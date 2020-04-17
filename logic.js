@@ -34,7 +34,6 @@ function start(){
            message.style.display = 'flex';
            z.style.display = 'none';
            clearInterval(timer);
-           gameRun();
        }
        else{
            pos--;
