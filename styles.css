@@ -306,5 +306,28 @@ top: -100%;
         position: relative;
         overflow: hidden;
     }
-
+     .starting {
+        width: 350px;
+        height: 284px;
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+        background-color: rgba(0, 47, 255, 0.609);
+        margin-bottom: 30px;
+        padding: 20px;
+        font-size: 40px;
+        font-family: 'VT323', monospace;
+        justify-content: center;
+        align-items: center;
+    }
+    .score > h2 {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+        text-align: center;
+        z-index: 1;
+        font-size: 70px;
+        position: absolute;
+    }
 }
