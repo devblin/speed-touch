@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HackerMode++</title>
+    <style>
+    #backh > a{
+    font-size: 30px;
+    text-decoration: none;
+    color: darkturquoise !important;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+    padding: 5px;
+}
+#backh > a:hover{
+  background-color: darkturquoise !important;
+  color: black !important;
+}
+#gameover {
+    color: red;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    margin-top: 130px;
+    font-size: 50px;
+}
+#greeting {
+    font-size: 20px;
+    color: orange;
+    font-size: 30px;
+    margin-top: -40px;
+    margin-bottom: 20px;
+    display: none;
+    justify-content: center;
+}
+/* STARTPAGE */
+.startpage{
+  display: flex;
+    justify-items: center;
+    align-items: center;
+    flex-direction: column;
+}
+button{
+  margin-top: 40px;
+    color: orange;
+    border: 1px solid orange;
+    background-color: black;
+    width: 100px;
+    justify-items: center;
+    align-items: center;
+    height: 50px;
+    font-family: 'VT323', monospace;
+    font-size: 25px;
+    padding: 5px;
+}
+button:hover{
+  color: black;
+  background-color: orange;
+  transition: 0.5s;
+  cursor: pointer;
+}
+.startpage > div {
+    display: flex;
+    color: darkturquoise;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 30px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+html{
+  background-color: black;
+}
+.score{
+  margin-bottom: 75px;
+  padding-bottom: 20px;
+  background-color: black;
+  color: orange;
+}
+.menu > .newgame {
+    font-size: 30px;
+    border: 1px solid orange;
+    color: orange;
+    padding: 10px;
+}
+.newgame:hover{
+  background-color: orange;
+  color: black;
+  cursor: pointer;
+  transition: 0.5s;
+}
+.menu {
+  background-color: black;
+    display: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: -69px;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 70px;
+    height: 70px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    font-family: 'VT323', monospace;
+}
+.time{
+  display: none !important;
+  justify-content: center;
+  flex-direction: row;
+  color: orange;
+}
+.best-time{
+  display: none !important;
+  color: orange;
+}
+/* MARQUEEE AREA */
+        #a{
+            --c:-50%;
+            --d: 0%;
+        }
+        #b{
+            --c:0%;
+            --d:-50%;
+        }
+        #e{
+            --c:-50%;
+            --d:0%;
+        }
+        #f{
+            --c:0%;
+            --d:-50%;
+        }
+        body{
+          font-family: 'VT323', monospace;;
+        }
+.marquee {
+  visibility: hidden;
+  margin: 0 auto;
+  background-color: black;
+  width: 400px;
+  height: 80px;
+  white-space: nowrap;
+  overflow: hidden;
+  box-sizing: border-box;
+  position: relative;
+}
+.marquee__content {
+  width: 200% !important;
+  display: flex;
+  line-height: 30px;
+  animation: marquee 3s linear infinite forwards;
+}
+.list-inline > li {
+    background-color: black;
+    color: orange;
+    border-radius: 3px;
+    border:1px solid orange;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2.5px;
+    display: flex;
+    height: 73px;
+    width: 73px;
+    margin-top: 2.5px;
+}
+.list-inline > li:hover{
+  background-color: orange;
+  color: black;
+  cursor: pointer;
+  transition: 0.1s;
+}
+.list-inline {
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+    height: 76px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 45px;
+}
+@keyframes marquee{
+    0% { transform: translateX(var(--c)); }
+  100% { transform: translateX(var(--d)); }
+}
+    </style>
+</head>
+<body>
+  <audio id="error" src="error.mp3"></audio>
+  <audio id="correct" src="correct.mp3"></audio>
+  <div class="score">
+    <h2>SpeedTouch</h2>
+    <div class="time">
+        <div>Time</div>
+        <p>
+            <span id="second">00</span>:<span id="millisecond">00</span>
+        </p>
+    </div>
+    <div class="best-time">
+        <div>Best Time</div>
+        <p>00:00</p>
+    </div>
+</div>
+<div class="menu">
+  <div onclick="newgame()" class="newgame">
+      New Game
+  </div>
+</div>
+<div id="greeting">"Tap as fast as you can !"</div>
+<div id="gameover">Game Over</div>
+<div class="startpage">
+  <div>The Hacker++ Mode consist of total 40 numbers. Tap in ascending order</div>
+  <button onclick="start()">Start</button>
+  <div id="backh"><a href="index.html"><span>&larr;</span> Back</a></div>
+</div>
+    <div id="a" class="marquee">
+        <div class="marquee__content">
+          <ul class="list-inline">
+             <li>11</li>
+             <li>20</li>
+             <li>13</li>
+             <li>4</li>
+             <li>15</li>
+          </ul>
+          <ul class="list-inline">
+             <li>11</li>
+             <li>20</li>
+             <li>13</li>
+             <li>4</li>
+             <li>15</li>
+          </ul>
+        </div>
+      </div>
+      <div id="b" class="marquee">
+        <div class="marquee__content">
+          <ul class="list-inline">
+            <li>6</li>
+            <li>3</li>
+            <li>18</li>
+            <li>7</li>
+            <li>10</li>
+          </ul>
+          <ul class="list-inline">
+            <li>6</li>
+            <li>3</li>
+            <li>18</li>
+            <li>7</li>
+            <li>10</li>
+          </ul>
+        </div>
+      </div>
+      <div id="e" class="marquee">
+        <div class="marquee__content">
+          <ul class="list-inline">
+             <li>1</li>
+             <li>12</li>
+             <li>9</li>
+             <li>14</li>
+             <li>5</li>
+          </ul>
+          <ul class="list-inline">
+             <li>1</li>
+             <li>12</li>
+             <li>9</li>
+             <li>14</li>
+             <li>5</li>
+          </ul>
+        </div>
+      </div>
+      <div id="f" class="marquee">
+        <div class="marquee__content">
+          <ul class="list-inline">
+             <li>16</li>
+             <li>17</li>
+             <li>8</li>
+             <li>19</li>
+             <li>2</li>
+          </ul>
+          <ul class="list-inline">
+            <li>16</li>
+            <li>17</li>
+            <li>8</li>
+            <li>19</li>
+            <li>2</li>
+          </ul>
+        </div>
+      </div>
+      <script src="hackermode++.js"></script>
+</body>
+</html>
