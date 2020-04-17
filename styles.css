@@ -1,0 +1,180 @@
+body{
+    margin: 0;
+}
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+    border-color: 1px solid black;
+    flex-direction: column;
+}
+.game-square {
+box-sizing: border-box;
+/* border: 1px solid #000; */
+width: 100px;
+height: 100px;
+position: relative;
+overflow: hidden;
+}
+
+#game {
+width: 500px;
+height: 400px;
+display: flex;
+justify-content: center;
+/* align-items: center; */
+flex-direction: row;
+flex-wrap: wrap;
+background-color: rgba(0, 47, 255, 0.609);
+margin-bottom: 30px;
+padding: 30px;
+/* border: 1px solid black; */
+}
+
+.game-square > div {
+width: 100%;
+height: 200%;
+position: absolute;
+top: 0;
+}
+
+.game-square > div > div {
+height: 50%;
+}
+
+.game-square > div > div:first-child {
+background-color: orange;
+margin: 1.5px;
+display: flex;
+justify-content: center;
+align-items: center;
+color: black;
+border-radius: 10px;
+font-size: 70px;
+font-family: 'VT323', monospace;
+text-align: center;
+}
+.game-square > div > div:last-child {
+    background-color: orange;
+    margin: 1.5px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    border-radius: 10px;
+    font-size: 70px;
+    font-family: 'VT323', monospace;
+    text-align: center;
+    }
+.flip > div {
+top: -100%;
+}
+
+
+/* SCORE DIVISION */
+.score{
+    background-color: rgba(0, 47, 255, 0.60);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    height: 140px;
+    padding-left: 360px;
+    padding-bottom: 0px;
+    padding-top: 20px;
+    font-family: 'VT323', monospace;
+    padding-right: 360px;
+}
+
+.score > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    margin-left: 72px;
+    margin-right: 72px;
+}
+
+.score > div >p{
+    background-color: white;
+}
+
+.menu{
+    background-color: rgba(0, 47, 255, 0.60);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 70px;
+    padding-left: 360px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    font-family: 'VT323', monospace;
+    padding-right: 360px;
+}
+.menu > .newgame{
+    font-size: 35px;
+    padding: 10px;
+}
+
+.greeting{
+    background-color: white;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 70px;
+    padding-left: 360px;
+    font-size: 45px;
+    margin-top: 10px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    font-family: 'VT323', monospace;
+    padding-right: 360px;
+}
+
+.starting{
+    width: 500px;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: rgba(0, 47, 255, 0.609);
+    margin-bottom: 30px;
+    padding: 30px;
+    font-size: 60px;
+    font-family: 'VT323', monospace;
+    justify-content: center;
+    align-items: center;
+}
+
+.countdown{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    margin-top: -43px;
+    background-color:rgba(0, 47, 255, 0.809);
+    color: black;
+    font-size: 300px;
+    z-index: 1;
+}
+
+.score > h2{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    text-align: center;
+    z-index: 1;
+    font-size: 100px;
+    position: absolute;
+}
