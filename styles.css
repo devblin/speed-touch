@@ -154,10 +154,10 @@ top: -100%;
     margin: 0;
     width: 100%;
     height: 100%;
-    margin-top: -43px;
+    padding-bottom: 50px;
     color: black;
     font-size: 300px;
-    z-index: 1;
+    z-index: 2;
 }
 
 .score > h2{
@@ -171,6 +171,30 @@ top: -100%;
 }
 
 @media screen and (max-width:560px){
+    .game-square > div > div:first-child {
+        background-color: orange;
+        margin: 1.5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: black;
+        border-radius: 10px;
+        font-size: 55px;
+        font-family: 'VT323', monospace;
+        text-align: center;
+    }
+    .game-square > div > div:last-child {
+        background-color: orange;
+        margin: 1.5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: black;
+        border-radius: 10px;
+        font-size: 55px;
+        font-family: 'VT323', monospace;
+        text-align: center;
+    }
     #game {
         width: 380px;
         height: 304px;
@@ -189,4 +213,98 @@ top: -100%;
         position: relative;
         overflow: hidden;
     }
+    .starting {
+        width: 380px;
+        height: 304px;
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+        background-color: rgba(0, 47, 255, 0.609);
+        margin-bottom: 30px;
+        padding: 20px;
+        font-size: 40px;
+        font-family: 'VT323', monospace;
+        justify-content: center;
+        align-items: center;
+    }
+    .score > h2 {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+        text-align: center;
+        z-index: 1;
+        font-size: 80px;
+        position: absolute;
+    }
+}
+
+@media screen and (max-width:460px){
+
+    .game-square > div > div:first-child {
+        background-color: orange;
+        margin: 1.5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: black;
+        border-radius: 10px;
+        font-size: 50px;
+        font-family: 'VT323', monospace;
+        text-align: center;
+    }
+    .game-square > div > div:last-child {
+        background-color: orange;
+        margin: 1.5px;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        color: black;
+        border-radius: 10px;
+        font-size: 50px;
+        font-family: 'VT323', monospace;
+        text-align: center;
+    }
+    #game {
+        width: 350px;
+        height: 284px;
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+        background-color: rgba(0, 47, 255, 0.609);
+        margin-bottom: 30px;
+        padding: 20px;
+    }
+    .greeting {
+        background-color: white;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 70px;
+        font-size: 30px;
+        margin-top: 10px;
+        padding-bottom: 0px;
+        padding-top: 0px;
+        font-family: 'VT323', monospace;
+    }
+    .score > div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 30px;
+        margin-left: 40px;
+        margin-right: 40px;
+    }
+    .game-square {
+        box-sizing: border-box;
+        width: 70px;
+        height: 70px;
+        position: relative;
+        overflow: hidden;
+    }
+
 }
