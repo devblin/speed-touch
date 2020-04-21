@@ -34,13 +34,31 @@
     <div class="greeting">
         "Tap as fast as you can"
     </div>
-    <div class="container">
-        <div type="button" onclick="start()" class="starting">
-            Start Game
+    <div class="home">
+        <div id="selectmode">Select Mode</div>
+        <div>
+            <div id="normalmode" style="margin-bottom: 5px; padding: 5px;" onclick="normal()">Normal Mode</div>
+            <div id="hackermode" style="margin-bottom: 5px; margin-top: 10px; padding: 5px;" onclick="hacker()">Hacker Mode</div>
         </div>
-        <div class="topscores">Top Five Best-Time</div>
-        <div class="scorelist">
+        <div id="showscore">View High Scores</div>
+    </div>
+    <div class="container">
+        <div type="button" class="starting">
+            <div id="startingmsg">Enter Number of Grid</div>
+            <input type="number" name="search" value = '' placeholder="Enter a number" min="20" max="100" id="gridNumberInput">
+            <button id="startbutton" onclick="start()">Start Game</button>
+            <button id="startbutton0" onclick="">Start</button>
+            <div id="back"><span>&larr;</span> Back</div>
+        </div>
+        <!-- <div class="level">
             
+        </div> -->
+        <div class="viewscore">
+            <div id="closescore">"Tap inside to close"</div>
+            <div class="topscores">Top Five Best-Time <span id="scorelistNormal">(Normal Mode)</span></div>
+            <div class="scorelist">
+            <p>No High Scores</p>
+            </div>
         </div>
         <div class="gameover">
             Game Over
@@ -48,7 +66,6 @@
         <div class="countdown"></div>
         <div id="game"></div>
     </div>
-    <script src="logic.js"></script>
-    
+    <script src="logic copy.js"></script>
 </body>
 </html>
