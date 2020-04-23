@@ -1,13 +1,173 @@
 body{
     margin: 0;
 }
+.individualscore{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+    margin-top: -140px;
+    text-align: center;
+}
+.yourlist{
+    font-family: 'VT323', monospace;
+    font-size: 25px;
+    display: flex;
+    flex-direction: column;
+}
+.yourlist > p{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.yourlist > div{
+    font-size: 40px;
+    margin-top: 100px;
+    margin-bottom: 170px;
+}
+#yourscore{
+    color: red;
+    font-size: 30px;
+    display: flex;
+    flex-direction: column;
+    font-family: 'VT323', monospace;
+}
+#myscoreshow{
+    font-size: 30px;
+    font-family: 'VT323', monospace;
+    background-color: green;
+    margin-top: 15px;
+    color: white;
+    border: none;
+    padding: 5px;
+    width: 80px;
+}
+#myscoreshow:hover{
+    color: green;
+    background-color: black;
+    transition: 0.6s;
+    cursor: pointer;
+}
+.overallscore{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    z-index: 3;
+    margin-top: -50px;
+}
+#option1:hover{
+    color: blue;
+    transition: 0.6s;
+    cursor: pointer;
+}
+#option2:hover{
+    color: blue;
+    transition: 0.6s;
+    cursor: pointer;
+}
+#myscores {
+    display: flex;
+    flex-direction: column;
+    font-family: 'VT323', monospace;
+    z-index: 2;
+    margin-top: -170px;
+    justify-content: center;
+    align-items: center;
+}
+#myscores1{
+    font-size: 30px;
+}
+#searchusername {
+    padding: 5px;
+    border: 1px solid blue;
+    text-align: center;
+    font-size: 30px;
+    margin-top: 10px;
+    font-family: 'VT323', monospace;
+    width: 270px;
+}
+#closeviewscore{
+    position: relative;
+    color: blue;
+    top: -100px;
+    font-size: 20px;
+    font-family: 'VT323', monospace;
+}
+#closeviewscore:hover{
+    cursor: pointer;
+    transition: 0.6s;
+    color: red;
+}
+#option1{
+    margin-top: -30px;
+    font-size: 40px;
+    font-family: 'VT323', monospace;
+    margin-bottom: 20px;
+}
+#option2{
+    font-size: 40px;
+    font-family: 'VT323', monospace;
+    margin-top: 20px;
+}
+/* USER NAME */
+#userDetails{
+    display: flex;
+    position: relative;
+    align-items: center;
+    margin-top: 0px;
+    flex-direction: column;
+    font-family: 'VT323', monospace;
+    justify-content: center;
+}
+#usersubmit{
+    margin-top: 20px;
+    height: 44px;
+    font-family: 'VT323', monospace;
+    width: 88px;
+    background: green;
+    font-size: 25px;
+    border: none;
+    color: white;
+}
+#userinput{
+    font-size: 28px;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+    font-family: 'VT323', monospace;
+}
+#username{
+    font-size: 30px;
+    padding: 15px;
+}
+/* CLOSESCORE */
 #closescore{
     display: flex; 
     justify-content: center; 
     flex-direction: column; 
-    font-size: 15px; 
+    font-size: 17px; 
+    margin-top: -100px;
     margin-bottom: 15px; 
+    font-family: 'VT323', monospace;
     color: blue;
+}
+#closescore1{
+    display: flex; 
+    justify-content: center; 
+    flex-direction: column; 
+    font-size: 17px; 
+    margin-top: 90px;
+    margin-bottom: 15px; 
+    font-family: 'VT323', monospace;
+    color: blue;
+}
+#closescore1:hover{
+    color: red;
+    transition: 0.6s;
+    cursor: pointer;
 }
 #scorelistNormal{
     margin-top: 5px; 
@@ -31,17 +191,37 @@ body{
     color: rgb(5, 136, 5);
 }
 /* HOME SECTION */
+.home > div > #normalmode{
+    margin-bottom: 5px; 
+    padding: 5px;
+}
+#hackermode2{
+    margin-bottom: -15px;
+    margin-top: 5px;
+    padding: 5px;
+}
+#hackermode2:hover{
+    color: red;
+    background-color: black;
+    cursor: pointer;
+    transition: 0.25s;
+}
+#hackermode{
+    margin-bottom: 5px; 
+    margin-top: 5px; 
+    padding: 5px;
+}
 #normalmode:hover{
-    background-color: orange;
+    cursor: pointer;
+    background-color: rgb(255, 174, 0);
     color: white;
     transition: 0.25s;
-    cursor: pointer;
 }
 #hackermode:hover{
+    cursor: pointer;
     background-color: black;
     color: rgb(5, 136, 5);
     transition: 0.25s;
-    cursor: pointer;
 }
 .home {
     display: flex;
@@ -77,7 +257,7 @@ body{
     overflow: auto;
     border: 1px solid rgba(0, 47, 255, 0.609);
     background-color: white; 
-    margin-top: -50px;
+    margin-top: -100px;
 }
 #gridNumberInput {
     border: 1px solid rgba(0, 47, 255, 0.609);
@@ -141,7 +321,7 @@ font-family: 'VT323', monospace;
 text-align: center;
 }
 .game-square > div > div:hover{
-    background-color: black;
+    background-color: black !important;  
     color: orange;
     border: 1px solid orange;
     cursor: pointer;
@@ -192,7 +372,11 @@ text-align: center;
     font-size: 35px;
     padding: 10px;
 }
-
+.newgame:hover{
+    color: white;
+    transition: 0.6s;
+    cursor: pointer;
+}
 .greeting{
     background-color: white;
     display: flex;
@@ -207,14 +391,14 @@ text-align: center;
     padding-top: 0px;
     font-family: 'VT323', monospace;
 }
-
 .starting {
+    display: none;
     width: 288px;
     height: 338px;
     text-align: center;
     color: green;
     line-height: 40px;
-    display: flex;
+    display: none;
     flex-direction: column;
     flex-wrap: wrap;
     margin-bottom: 10px;
@@ -224,6 +408,20 @@ text-align: center;
     justify-content: center;
     align-items: center;
     margin-top: 0px;
+}
+#back1{
+    font-size: 30px;
+    color: blue;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+    padding: 5px;
+}
+#back1:hover {
+    color: white;
+    background-color: blue;
+    transition: 0.25s;
+    cursor: pointer;
 }
 #back{
     font-size: 30px;
@@ -239,7 +437,8 @@ text-align: center;
     transition: 0.25s;
     cursor: pointer;
 }
-.topscores {
+/* TOPSCORES */
+.topscores {                             
     color: hsl(229, 100%, 50%);
     font-size: 35px;
     font-family: 'VT323', monospace;
@@ -247,7 +446,6 @@ text-align: center;
     border-bottom: 1px solid black;
     margin-top: -20px;
 }
-
 .scorelist > p {
     display: flex;
     flex-direction: column;
@@ -255,16 +453,14 @@ text-align: center;
     color: black;
     font-size: 30px;
     font-family: 'VT323', monospace;
-    width: 200px;
+    width: 300px;
     text-align: center;
     height: 50px;
     margin: unset;
     justify-content: center;
     align-items: center;
-    /* border-bottom: 1px solid black; */
 }
-
-.starting > button {
+#startbutton {
     background-color: green;
     color: white;
     border: none;
@@ -273,7 +469,24 @@ text-align: center;
     font-family: 'VT323', monospace;
     font-size: 25px;
 }
-
+#startbutton0{
+    background-color: green;
+    color: white;
+    border: none;
+    margin-top: 15px;
+    padding: 10px;
+    font-family: 'VT323', monospace;
+    font-size: 25px;
+}
+#startbutton1{
+    background-color: green;
+    color: white;
+    border: none;
+    margin-top: 15px;
+    padding: 10px;
+    font-family: 'VT323', monospace;
+    font-size: 25px;
+}
 .gameover {
     display: flex;
     justify-content: center;
@@ -318,8 +531,8 @@ text-align: center;
     }
     .score > div {
         font-size: 25px;
-        margin-left: 68px;
-        margin-right: 68px;
+        margin-left: 50px;
+        margin-right: 50px;
     }
     .home {
         font-size: 30px;
@@ -344,6 +557,7 @@ text-align: center;
         height: 380px;
         margin-top: -50px;
     }
+
     .topscores {
         font-size: 30px;
         padding: 10px;
@@ -380,6 +594,15 @@ text-align: center;
         font-size: 25px;
         padding: 10px;
     }
+    #closeviewscore {
+        top: -115px;
+    }
+    #closescore1 {
+        margin-top: 190px;
+    }
+    #closescore {
+        margin-top: -7px;
+    }
 }
 
 @media screen and (max-width:375px) {
@@ -410,8 +633,8 @@ text-align: center;
         font-size: 65px;
     }
     .score > div {
-        margin-left: 56px;
-        margin-right: 56px;
+            margin-left: 30px;
+            margin-right: 30px;
     }
     .greeting {
         font-size: 25px;
@@ -419,13 +642,61 @@ text-align: center;
     }
     .viewscore {
         width: 300px;
-        height: 370px;
+        height: 390px;
     }
     .topscores {
         font-size: 30px;
     }
+    #back1 {
+        margin-top: 70px;
+    }
+    #back {
+        margin-top: 70px;
+    }
 }
 @media screen and (max-width:320px) {
+    #username {
+        font-size: 25px;
+        padding: 15px;
+    }
+    #usersubmit {
+        margin-top: 20px;
+        height: 40px;
+        font-size: 25px;
+    }
+    #back {
+        margin-top: 60px;
+    }
+    #back1 {
+        margin-top: 60px;
+    }
+    #userinput {
+        font-size: 25px;
+        height: 15px;
+    }
+    #closescore1 {
+        margin-top: 180px;
+    }
+    #yourscore {
+        font-size: 25px;
+    }
+    .yourlist > div {
+        font-size: 35px;
+        margin-top: 70px;
+        margin-bottom: 110px;
+    }
+    #searchusername {
+        font-size: 25px;
+        width: 200px;
+    }
+    #option1 {
+        font-size: 30px;
+        margin-top: -40px;
+    
+    }
+    #option2 {
+        font-size: 30px;
+    }
     #closescore{
         margin-bottom: 0px;
         font-size: 5px;
@@ -444,7 +715,7 @@ text-align: center;
         font-size: 200px;
     }
     .starting{
-        height: 318px;
+        height: 253px;
         line-height: 35px;
     }
     #startingmsg{
@@ -487,12 +758,12 @@ text-align: center;
     }
     .scorelist > p {
         font-size: 25px;
-        width: 160px;
+        width: 200px;
         height: 40px;
     }
     .score > div {
-        margin-left: 40px;
-        margin-right: 40px;
+        margin-left: 35px;
+        margin-right: 35px;
     }
     #game {
         width: 275px;
@@ -505,5 +776,14 @@ text-align: center;
     #selectmode{
         font-size: 30px;
         margin-bottom: 10px;
+    }
+    #myscoreshow {
+        font-size: 25px;
+        margin-top: 15px;
+        padding: 5px;
+        width: 80px;
+    }
+    #myscores1 {
+        font-size: 25px;
     }
 }
