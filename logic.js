@@ -6,7 +6,19 @@ const bestTime = document.querySelector('.best-time');
 const newTime = document.querySelector('.time');
 const gameTitle = document.querySelector('.score h2');
 const scoreList = document.querySelector('.scorelist');
-var scoreRecord = JSON.parse(localStorage.getItem('score'));
+const yourList = document.querySelector('.yourlist');
+
+//GRID SIZE 4x5 and 6x6;
+var gridSize = 20;
+var numbertoAdd = 20;
+var modeValue = 20;
+
+document.querySelector('.overallscore').style.display = 'none';
+document.querySelector('.individualscore').style.display = 'none';
+document.querySelector('#myscores').style.display = 'none';
+
+var highScore = JSON.parse(localStorage.getItem('highScores')) || [];
+
 var alertWrong = document.queryCommandValue('.greeting p');
 document.querySelector('.starting').style.display = 'none';
 document.querySelector('.gameover').style.display = 'none';
@@ -17,28 +29,103 @@ message.style.display = 'none';
 y.style.display = 'none';
 z.style.display = 'none';
 const x = document.querySelector('.container .starting');
+document.querySelector('#userDetails').style.display = 'none';
 
-//VIEW SCORES
+//TOP SCORES CLICKED
+document.querySelector('#option2').onclick = function() {
+  document.querySelector('#option1').style.display = 'none';
+  document.querySelector('#option2').style.display = 'none';
+  document.querySelector('#closeviewscore').style.display = 'none';
+  document.querySelector('.overallscore').style.display = 'flex';
+}
+//MY SCORES CLICKED
+document.querySelector('#option1').onclick = function() {
+  document.querySelector('#option1').style.display = 'none';
+  document.querySelector('#option2').style.display = 'none';
+  document.querySelector('#myscores').style.display = 'flex';
+}
+//SOUNDS
+//ERROR SOUND
+let errorAudio = document.querySelector('#error');
+//CORRECT SOUND
+let correctAudio = document.querySelector('#correct');
+//SHOWS OPTION MENU OF SCORES
 document.querySelector('#showscore').onclick = function() {
   document.querySelector('.viewscore').style.display = 'flex';
+  document.querySelector('#closeviewscore').style.display = 'flex';
+  document.querySelector('#option1').style.display = 'flex';
+  document.querySelector('#option2').style.display = 'flex';
+  document.querySelector('.overallscore').style.display = 'none';
+  document.querySelector('.individualscore').style.display = 'none';
 }
-document.querySelector('.viewscore').onclick = function() {
+//CLOSES OVERALL-SCORE MENU
+document.querySelector('.overallscore').onclick = function() {
+  document.querySelector(".overallscore").style.display = 'none';
   document.querySelector('.viewscore').style.display = 'none';
 }
-
-//BACK 
+//CLOSES OPTION MENU OF SCORES
+document.querySelector('#closeviewscore').onclick = function() {
+  enteredName = '';
+  document.querySelector('.viewscore').style.display = 'none';
+  document.querySelector('#myscores').style.display = 'none';
+}
+//BACK TO MAIN MENU
 document.querySelector('#back').onclick = function() {
+  document.querySelector('.starting').style.display = 'none';
+  document.querySelector('#userinput').value = null;
+  document.querySelector(".home").style.display = 'flex';
+}
+document.querySelector('#back1').onclick = function() {
+  document.querySelector('#userinput').value = null;
   document.querySelector(".home").style.display = 'flex';
   document.querySelector('.starting').style.display = 'none';
+  document.querySelector('#userDetails').style.display = 'none';
 }
-var l = 0; //VAR FOR GAME RUN
-var k = 0; //FOR GAME RUN
-var m = 1; //FOR GAME RUN
+//SEARCHING SCORES INDIVIDUALLY
+var getUser;
+var enteredName;
+document.querySelector('#myscoreshow').onclick = function() {
+  enteredName = document.querySelector('#searchusername').value;
+    if(enteredName != '') {
+      document.querySelector('#closeviewscore').style.display = 'none';
+      document.querySelector('#myscores').style.display = 'none';
+      document.querySelector('.viewscore').style.display = 'none';
+      if(localStorage.getItem(enteredName) != null) {
+        document.querySelector('#yourscore').style.display = 'flex';
+        document.querySelector('.viewscore').style.display = 'flex';
+        document.querySelector(".individualscore").style.display = 'flex';
+        document.querySelector('.yourlist').style.display = 'flex';
+        getUser = JSON.parse(localStorage.getItem(enteredName));
+        for(var v = 0; v < getUser.length ; v++) {
+          yourList.innerHTML += '<p>'+ getUser[v] +'</p>';
+        }
+      }
+      else {
+        document.querySelector('.viewscore').style.display = 'flex';
+        document.querySelector('#yourscore').style.display = 'none';
+        document.querySelector('.yourlist').style.display = 'flex';
+        yourList.innerHTML = '<div>User Not Found</div>';
+        document.querySelector('.individualscore').style.display = 'flex';
+      }
+    }
+    else {
+      alert('Enter a name');
+    }
+}
+//CLOSE INDIVIDUAL SCORE MENU
+document.querySelector('#closescore1').onclick = function() {
+  document.querySelector('.viewscore').style.display = 'none';
+  document.querySelector('#yourscore').style.display = 'none';
+  document.querySelector('.yourlist').style.display = 'none';
+  document.querySelector('#searchusername').value = '';
+  yourList.innerHTML = '';
+  document.querySelector('.individualscore').style.display = 'none';
+}
 //SCORE RECORD FOR NORMAL MODE ONLY
-if(scoreRecord != null) {
+if(highScore != null) {
   scoreList.innerHTML = null;
-  for(var scoreNum = 0; scoreNum < scoreRecord.length; scoreNum++) {
-    scoreList.innerHTML += '<p>'+ scoreRecord[scoreNum] + ' s</p>';
+  for(var scoreNum = 0; scoreNum < highScore.length; scoreNum++) {
+    scoreList.innerHTML += '<p>'+ highScore[scoreNum].name + ' : ' + highScore[scoreNum].userScore + ' s</p>';
   }
 }
 else {
@@ -54,19 +141,39 @@ document.querySelector('#startbutton0').onclick = function() {
     start();
   }
   else {
-    alert('Enter number above or 20');
+    alert('Enter number above 20');
   }
 }
+//USER INPUT AREA FOR NORMAL MODE
+//USERNAME
+var userName;
+function user() {
+  document.querySelector('.home').style.display = 'none';
+  document.querySelector('#userDetails').style.display = 'flex';
+  document.querySelector('#usersubmit').onclick = function() {
+    userName = document.querySelector('#userinput').value;
+    if(userName != "" && isNaN(userName)) {
+      document.querySelector('#userDetails').style.display = 'none';
+      normal();
+    }
+    else {
+      errorAudio.play();
+      alert('Please Enter Your Name !');
+    }
+  }
+}
+//HACKERMODE 2
+
 //NORMAL MODE
-var modeValue;
 function normal() {
   modeValue = 20;
   document.querySelector(".home").style.display = 'none';
-  document.querySelector('.starting #startingmsg').innerHTML = '"There are 40 numbers" "Tap in ascending order"';
+  document.querySelector('.starting #startingmsg').innerHTML = 'There are 40 numbers Tap in ascending order';
   document.querySelector('.starting #gridNumberInput').style.display = 'none';
   document.querySelector('.starting').style.display = 'flex';
   document.querySelector('#startbutton0').style.display = 'none';
   document.querySelector('#startbutton').style.display = 'flex';
+  document.querySelector('#startbutton1').style.display = 'none';
 }
  //HACKER MODE
 function hacker() {
@@ -74,13 +181,35 @@ function hacker() {
   document.querySelector('.best-time').style.display = 'none';
   document.querySelector('#startbutton0').style.display = 'flex';
   document.querySelector('.home').style.display = 'none';
-  document.querySelector('.starting #startingmsg').innerHTML = 'Enter Number Between above or 20';
+  document.querySelector('.starting #startingmsg').innerHTML = 'Enter Number above 20';
   document.querySelector('.starting #gridNumberInput').style.display = 'flex';
   document.querySelector('.starting').style.display = 'flex';
+  document.querySelector('#startbutton1').style.display = 'none';
+}
+//HACKERMODE 2
+function redhacker() {
+  modeValue = 36;
+  gridSize = 36;
+  numbertoAdd = 36;
+  gridValue = 72;
+  document.querySelector('#game').style.height = '500px';
+  document.querySelector(".home").style.display = 'none';
+  document.querySelector('.best-time').style.display = 'none';
+  document.querySelector('.starting #startingmsg').innerHTML = 'There are 72 numbers Tap in ascending order';
+  document.querySelector('.starting #gridNumberInput').style.display = 'none';
+  document.querySelector('.starting').style.display = 'flex';
+  document.querySelector('#startbutton0').style.display = 'none';
+  document.querySelector('#startbutton').style.display = 'none';
+  document.querySelector('#startbutton1').style.display = 'flex';
+}
+document.querySelector('#startbutton1').onclick = function() {
+  start();
 }
 //SCORE VARIABLES
 var uniValue = 1;
-var yourScore = 0;
+var l = 0; //VAR FOR GAME RUN
+var k = 0; //FOR GAME RUN
+var m = 1; //FOR GAME RUN
 //NEWGAME 
 function newgame() {
   window.location.reload();
@@ -117,35 +246,44 @@ function countDown() {
 /////////GAME RUN AFTER THE TIMER STARTS
 function gameRun() {
   let gameValue = document.querySelectorAll('.game0 div'); //z
-  for(var i = 0; i < gameValue.length ;i++) {
-    gameValue[i].addEventListener('click',runIt);
-  }
+  var divColor = document.querySelectorAll('.game0');
+    for(var i = 0; i < gameValue.length ;i++) {
+      gameValue[i].addEventListener('click',runIt);
+      for(var t = 1; t < (gridSize+1) ; t++) {
+        if(Number(divColor[i].innerText) == t) {
+          divColor[i].firstElementChild.style.backgroundColor = 'rgb(255,'+String(200 - (t*2))+','+String(80-(t*2))+')';
+        }
+      }
+    }
   function runIt(e) {
     if(Number(e.target.innerHTML) <= m && k <= (modeValue - 1) && Number(e.target.innerHTML) >= (m - 1)) {
-        e.target.innerHTML = Number(e.target.innerHTML) + 20;
+        e.target.innerHTML = Number(e.target.innerHTML) + Number(numbertoAdd);
+        e.target.style.backgroundColor = 'rgb(255,'+String(180 - 2*(k+1))+','+String(40-((k+1)*2))+')';
+        correctAudio.play();
         m++ ;
         k++ ;
         uniValue += 1;
-    }
+      }
     else if(k >= modeValue) {
-      if(Number(e.target.innerHTML) <= m && l <= 19  && Number(e.target.innerHTML) >= (m - 1) ) {
+      if(Number(e.target.innerHTML) <= m && l <= (Number(numbertoAdd)- 1)  && Number(e.target.innerHTML) >= (m - 1) ) {
         e.target.style.display = 'none';
+        correctAudio.play();
         m++;
         uniValue += 1;
         l++;
       }
       else{
-          alert('NOT POSSIBLE');
+          errorAudio.play();
       }
     }
     else {
-        alert('NOT POSSIBLE');
+      errorAudio.play();
     }
   }
 } 
 //TIMER STARTS WHEN THE COUNTDOWN COMPLETES
 var Interval;
-var score = JSON.parse(localStorage.getItem('score')) || []; //SCORE VARIABLE
+var score = JSON.parse(localStorage.getItem(userName)) || []; //SCORE VARIABLE
 var mostRecentScore; //SCORE MOST RECENT VARIABLE;
 //TIMER START FUNCTION
 function timerStart() {
@@ -156,10 +294,10 @@ function timerStart() {
   Interval = setInterval(startTimer, 10);
   function startTimer () {
     milliseconds++;
-    if(milliseconds < 9){
+    if(milliseconds < 9) {
       appendMili.innerHTML = "0" + milliseconds;
     }
-    if (milliseconds > 9){
+    if (milliseconds > 9) {
       appendMili.innerHTML = milliseconds;
     }
     if (milliseconds > 99) {
@@ -169,7 +307,7 @@ function timerStart() {
       milliseconds = 0;
       appendMili.innerHTML = "0" + 0;
     }
-    if (seconds > 9){
+    if (seconds > 9) {
       appendSeconds.innerHTML = seconds;
     }
     if(uniValue == 41 && modeValue == 20) {
@@ -177,11 +315,17 @@ function timerStart() {
       mostRecentScore = Number(appendSeconds.innerHTML+'.'+appendMili.innerHTML); //ADDED VAR TO READ THE STOPPED TIME
       clearInterval(Interval);
       /////////ADDED THE SCORE
+      highScore.push({'userScore':mostRecentScore,'name':userName});
       message.innerHTML = 'Your tapping time is '+ mostRecentScore+' s'; //DISPLAY TAPPING TIME OF PLAYER
       score.push(mostRecentScore);
-      score.sort(function(a, b){return a-b});
-      score.splice(5);
-      localStorage.setItem('score',JSON.stringify(score));
+      highScore.sort(function(a, b) { //SORTING HIGH SCORES BASED ON USERS SCORES
+        return a.userScore - b.userScore;
+      });
+      score.sort(function(a, b){return a-b});  //SORTING USER'S INDIVIDUAL SCORES
+      highScore.splice(5); //TO TAKE ONLY TOP FIVE SCORES
+      score.splice(5); //TO TAKE ONLY TOP FIVE SCORES OF USER
+      localStorage.setItem('highScores',JSON.stringify(highScore));
+      localStorage.setItem(userName,JSON.stringify(score));
     }
     if(uniValue == (gridValue + 1) && modeValue != 20) {
       document.querySelector('.gameover').style.display = 'inherit';
@@ -189,17 +333,23 @@ function timerStart() {
       clearInterval(Interval);
       message.innerHTML = 'Your tapping time is '+ mostRecentScore+' s'; //DISPLAY TAPPING TIME OF PLAYER
     }
+    // else if(uniValue == 73  && modeValue == 36) {
+    //   document.querySelector('.gameover').style.display = 'inherit';
+    //   mostRecentScore = Number(appendSeconds.innerHTML+'.'+appendMili.innerHTML);
+    //   clearInterval(Interval);
+    //   message.innerHTML = 'Your tapping time is '+ mostRecentScore+' s'; //DISPLAY TAPPING TIME OF PLAYER
+    // }
   }  
 }
 //DISPLAY THE BEST TIME
-if(scoreRecord != null) {
-  document.querySelector('.best-time p').innerHTML = score[0]+' s';
+if(highScore != null) {
+  document.querySelector('.best-time p').innerHTML = highScore[0].name + ' : ' + highScore[0].userScore +' s';
 }
 }
 //DIV ELEMENT INSIDE ID:GAME FORMS WHEN THE DOCUMENT LOADS 
 function addElement() {
   var currentDiv = document.getElementById('game');
-  for(var i = 1; i < 21; i++) {
+  for(var i = 1; i < (Number(gridSize)+1); i++) {
     var newDiv = document.createElement('div');
     var newDiv0 = document.createElement('div');
     var newDiv1 = document.createElement('div');
@@ -210,6 +360,12 @@ function addElement() {
     newDiv0.appendChild(newDiv1);
     newDiv.classList.add('game-square');
     newDiv0.classList.add('game0');
+  }
+  if(gridSize == 36) {
+    for(var a = 0; a < 36; a++) {
+      document.querySelectorAll('.game-square')[a].style.width = '83px';
+      document.querySelectorAll('.game-square')[a].style.height = '83px';
+    }
   }
   for (var i = y.children.length; i >= 0; i--) {
     y.appendChild(y.children[Math.random()*i|0]);
