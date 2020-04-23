@@ -13,6 +13,8 @@
 </head>
 
 <body>
+    <audio id="error" src="error.mp3"></audio>
+    <audio id="correct" src="correct.mp3"></audio>
     <div class="score">
         <h2>SpeedTouch</h2>
         <div class="time">
@@ -26,6 +28,7 @@
             <p>00:00</p>
         </div>
     </div>
+
     <div class="menu">
         <div onclick="newgame()" class="newgame">
             New Game
@@ -37,24 +40,48 @@
     <div class="home">
         <div id="selectmode">Select Mode</div>
         <div>
-            <div id="normalmode" style="margin-bottom: 5px; padding: 5px;" onclick="normal()">(Normal Mode)</div>
-            <div id="hackermode" style="margin-bottom: 5px; margin-top: 10px; padding: 5px;" onclick="hacker()">Hacker Mode</div>
+            <div id="normalmode" onclick="user()" >Normal Mode</div>
+            <div id="hackermode" onclick="hacker()" >Hacker Mode</div>
+            <div id="hackermode2" onclick="redhacker()">Hacker Mode2</div>
         </div>
         <div id="showscore">View High Scores</div>
     </div>
     <div class="container">
-        <div type="button" class="starting">
+        <div id="userDetails">
+            <div id="username">Enter Your Name</div>
+            <input type="text" name="search" value="" placeholder="Your Name" id="userinput">
+            <button id="usersubmit">Enter</button>
+            <div id="back1"><span>&larr;</span> Back</div>
+        </div>
+        <div class="starting">
             <div id="startingmsg">Enter Number of Grid</div>
             <input type="number" name="search" value = '' placeholder="Enter a number" min="20" max="100" id="gridNumberInput">
             <button id="startbutton" onclick="start()">Start Game</button>
-            <button id="startbutton0" onclick="">Start</button>
+            <button id="startbutton0">Start</button>
+            <button id="startbutton1">Start</button>
             <div id="back"><span>&larr;</span> Back</div>
         </div>
         <div class="viewscore">
-            <div id="closescore">"Tap inside to close"</div>
-            <div class="topscores">Top Five Best-Time <span id="scorelistNormal">(Normal Mode)</span></div>
+            <div id="closeviewscore">"Tap here to close"</div> 
+            <div id="option1">My Scores</div>
+            <div id="option2">Top Scorers</div>
+        </div>
+        <div id="myscores">
+            <div id="myscores1">Enter Your Name</div>
+            <input type="text" name="search" value="" placeholder="Your Name" id="searchusername" required>
+            <button id="myscoreshow">Enter</button>
+        </div>
+        <div class="overallscore">
+            <div id="closescore">"Tap inside to close"</div> 
+            <div class="topscores">Top Five Players <span id="scorelistNormal">(Normal Mode)</span></div>
             <div class="scorelist">
             <p>No High Scores</p>
+            </div>
+        </div>
+        <div class="individualscore">
+            <div id="closescore1">"Tap here to close"</div>
+            <div id="yourscore">Your Top Five Scores <span id="scorelistNormal">(Normal Mode)</span></div>
+            <div class="yourlist">
             </div>
         </div>
         <div class="gameover">
@@ -63,6 +90,6 @@
         <div class="countdown"></div>
         <div id="game"></div>
     </div>
-    <script src="logic.js"></script>
+    <script src="logic copy.js"></script>
 </body>
 </html>
