@@ -7,7 +7,8 @@ const newTime = document.querySelector('.time');
 const gameTitle = document.querySelector('.score h2');
 const scoreList = document.querySelector('.scorelist');
 const yourList = document.querySelector('.yourlist');
-
+const option1 = document.querySelector('#option1');
+const option2 = document.querySelector('#option2');
 //GRID SIZE 4x5 and 6x6;
 var gridSize = 20;
 var numbertoAdd = 20;
@@ -32,16 +33,16 @@ const x = document.querySelector('.container .starting');
 document.querySelector('#userDetails').style.display = 'none';
 
 //TOP SCORES CLICKED
-document.querySelector('#option2').onclick = function() {
-  document.querySelector('#option1').style.display = 'none';
-  document.querySelector('#option2').style.display = 'none';
+option2.onclick = function() {
+  option1.style.display = 'none';
+  option2.style.display = 'none';
   document.querySelector('#closeviewscore').style.display = 'none';
   document.querySelector('.overallscore').style.display = 'flex';
 }
 //MY SCORES CLICKED
 document.querySelector('#option1').onclick = function() {
-  document.querySelector('#option1').style.display = 'none';
-  document.querySelector('#option2').style.display = 'none';
+  option1.style.display = 'none';
+  option2.style.display = 'none';
   document.querySelector('#myscores').style.display = 'flex';
 }
 //SOUNDS
@@ -91,6 +92,7 @@ document.querySelector('#myscoreshow').onclick = function() {
       document.querySelector('#myscores').style.display = 'none';
       document.querySelector('.viewscore').style.display = 'none';
       if(localStorage.getItem(enteredName) != null) {
+        correctAudio.play();
         document.querySelector('#yourscore').style.display = 'flex';
         document.querySelector('.viewscore').style.display = 'flex';
         document.querySelector(".individualscore").style.display = 'flex';
@@ -105,6 +107,7 @@ document.querySelector('#myscoreshow').onclick = function() {
         document.querySelector('#yourscore').style.display = 'none';
         document.querySelector('.yourlist').style.display = 'flex';
         yourList.innerHTML = '<div>User Not Found</div>';
+        errorAudio.play();
         document.querySelector('.individualscore').style.display = 'flex';
       }
     }
@@ -131,7 +134,6 @@ if(highScore != null) {
 else {
   scoreList.style.display = 'inherit';
 }
-
 //HACKERMODE INPUT ANY NUMBER GAME
 var gridValue = 0;
 document.querySelector('#startbutton0').onclick = function() {
@@ -166,6 +168,8 @@ function user() {
 
 //NORMAL MODE
 function normal() {
+  gridSize = 20;
+  numbertoAdd = 20;
   modeValue = 20;
   document.querySelector(".home").style.display = 'none';
   document.querySelector('.starting #startingmsg').innerHTML = 'There are 40 numbers Tap in ascending order';
@@ -333,12 +337,6 @@ function timerStart() {
       clearInterval(Interval);
       message.innerHTML = 'Your tapping time is '+ mostRecentScore+' s'; //DISPLAY TAPPING TIME OF PLAYER
     }
-    // else if(uniValue == 73  && modeValue == 36) {
-    //   document.querySelector('.gameover').style.display = 'inherit';
-    //   mostRecentScore = Number(appendSeconds.innerHTML+'.'+appendMili.innerHTML);
-    //   clearInterval(Interval);
-    //   message.innerHTML = 'Your tapping time is '+ mostRecentScore+' s'; //DISPLAY TAPPING TIME OF PLAYER
-    // }
   }  
 }
 //DISPLAY THE BEST TIME
